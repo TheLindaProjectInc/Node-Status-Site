@@ -4,8 +4,8 @@
     "RPC":{
       "LogDebug":false,
       "Server":"localhost",
-      "Username":"RPC_USERNAME",
       "Port":33831,
+      "Username":"RPC_USERNAME",
       "Password":"RPC_PASSWORD"
     },
     "EMAIL":{
