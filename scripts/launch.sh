@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 user="root"
 daemonDir="/var/www/nodesite/scripts"

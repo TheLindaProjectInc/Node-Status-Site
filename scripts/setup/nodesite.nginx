@@ -1,0 +1,58 @@
+server {
+
+        root /var/www/nodesite/public;
+
+        # Add index.php to the list if you are using PHP
+        index index.html index.htm;
+
+        server_name SERVER_NAME;
+
+        location / {
+                # First attempt to serve request as file, then
+                # as directory, then fall back to displaying a 404.
+                try_files $uri $uri/ =404;
+        }
+
+        location /api/ {
+                proxy_set_header  Host $host;
+                proxy_set_header  X-Real-IP $remote_addr;
+                proxy_set_header  X-Forwarded-Proto https;
+                proxy_set_header  X-Forwarded-For $remote_addr;
+                proxy_set_header  X-Forwarded-Host $remote_addr;
+                proxy_pass    http://127.0.0.1:8771/;
+        }
+
+        error_page 404 /404.html;
+        location = /404.html {
+                root /var/www/nodesite/public/error;
+                internal;
+        }
+
+        error_page 403 405 406 /403.html;
+        location = /403.html {
+                root /var/www/nodesite/public/error;
+                internal;
+        }
+
+        error_page 500 501 505 /500.html;
+        location = /500.html {
+                root /var/www/nodesite/public/error;
+                internal;
+        }
+
+        error_page 503 504 /504.html;
+        location = /504.html {
+                root /var/www/nodesite/public/error;
+                internal;
+        }
+
+        error_page 502 /502.html;
+        location = /502.html {
+                root /var/www/nodesite/public/error;
+                internal;
+        }
+
+
+    listen 80 ;
+
+}
