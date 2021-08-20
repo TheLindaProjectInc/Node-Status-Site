@@ -1,0 +1,27 @@
+{
+  "CONFIG":{
+    "Version":"1.3.0",
+    "RPC":{
+      "LogDebug":false,
+      "Server":"localhost",
+      "Username":"RPC_USERNAME",
+      "Port":33831,
+      "Password":"RPC_PASSWORD"
+    },
+    "EMAIL":{
+      "Enabled":false,
+      "FowardTo":"admin@metrix.tips",
+      "SystemFrom":"system@metrix.tips",
+      "SystemFromName":"metrix.tips SYSTEM",
+      "ServerName":"metrix.tips"
+    },
+    "XDOS":{
+      "CooldownTimeHost":3,
+      "CooldownTimeAgent":120
+    },
+    "HTTP":{
+      "Server":"127.0.0.1",
+      "Port":8771
+    }
+  }
+}
