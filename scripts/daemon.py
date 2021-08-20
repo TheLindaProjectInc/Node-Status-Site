@@ -300,11 +300,12 @@ class OhmRoot(object):
                             print("Unknown " + str(tip));
                         continue;
                 if (active and longest) :
+                    synced = self.conf['coin']['ConsideredBlocksSynced'];
                     for p in validHeaders :
-                        if (p['height'] >= active['height'] - 8 and p['branchlen'] > 1) :
+                        if (p['height'] >= active['height'] - synced and p['branchlen'] > 1) :
                             problems.append(p);
                     for p in validForks :
-                        if (p['height'] >= active['height'] - 8 and p['branchlen'] > 1) :
+                        if (p['height'] >= active['height'] - synced and p['branchlen'] > 1) :
                             problems.append(p);
                     if (len(problems) > 0) :
                         if (self.verbose == True):
@@ -314,6 +315,7 @@ class OhmRoot(object):
                 chaintips['forkSuspected'] = forkSuspected
                 chaintips['longest'] = longestLength
                 chaintips['tip'] = longest
+                chaintips['problems'] = problems
                 self.addForkCache(chaintips)
             else:
                 chaintips = self.getForkCacheVal()
@@ -696,10 +698,11 @@ def loadConf(dir):
         cagnt = data['CONFIG']['XDOS']['CooldownTimeAgent']
         cherrysrv = data['CONFIG']['HTTP']['Server']
         cherryprt = data['CONFIG']['HTTP']['Port']
+        coin = data['CONFIG']['COIN']
         rpc = { "debug" : debug, "username" : username, "password" : password, "server" : server, "port" : port }
         mail = { "enabled" : enb, "fowardto" : fwdto, "systemfrom" : sysfrm, "sysnamefrom" : sysnmefrm, "cooldownhost" : chost, "cooldownagent" : cagnt, "subjectname" : sbjname }
         srvr = { "server": cherrysrv, "port": cherryprt }
-        item = { "version" : version, "rpc" : rpc, "mail" : mail, "web" : srvr, 'localdir' : dir }
+        item = { "version" : version, "rpc" : rpc, "mail" : mail, "web" : srvr, "coin" : coin, 'localdir' : dir }
         print("Config Loaded! Version " + version)
         return item
     except Exception as ex:

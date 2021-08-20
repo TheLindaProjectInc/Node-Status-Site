@@ -8,6 +8,9 @@
       "Username":"RPC_USERNAME",
       "Password":"RPC_PASSWORD"
     },
+    "COIN":{
+      "ConsideredBlocksSynced":8
+    },
     "EMAIL":{
       "Enabled":false,
       "FowardTo":"admin@metrix.tips",
